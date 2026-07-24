@@ -210,6 +210,17 @@ export default function SectionPage({ section, initialPage = 0, onMaterial, onSu
 
   const totalPages = Math.ceil(total / ITEMS_PER_PAGE) || 1
 
+  const [editingPage, setEditingPage] = useState(false)
+  const [pageInput, setPageInput] = useState('')
+  const commitPageJump = () => {
+    const n = parseInt(pageInput, 10)
+    if (Number.isFinite(n)) {
+      const clamped = Math.min(Math.max(n, 1), totalPages)
+      if (clamped - 1 !== page) loadPage(clamped - 1)
+    }
+    setEditingPage(false)
+  }
+
   // Платный курс — экран покупки (подписка его не открывает)
   if (courseLocked) return <CoursePaywall section={section} onPurchased={() => setOwned(true)} />
 
@@ -344,7 +355,30 @@ export default function SectionPage({ section, initialPage = 0, onMaterial, onSu
             <div className="flex items-center justify-center gap-2 py-4">
               <button disabled={page === 0} onClick={() => loadPage(page - 1)}
                 className="w-9 h-9 bg-s1 border border-bd2 rounded text-white text-lg flex items-center justify-center disabled:opacity-30">‹</button>
-              <span className="text-[13px] text-gray tracking-wider min-w-[48px] text-center">{page + 1} / {totalPages}</span>
+              {editingPage ? (
+                <span className="flex items-center gap-1.5">
+                  <input
+                    type="number" inputMode="numeric" min={1} max={totalPages} autoFocus
+                    value={pageInput}
+                    onChange={e => setPageInput(e.target.value)}
+                    onFocus={e => e.currentTarget.select()}
+                    onBlur={commitPageJump}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') (e.target as HTMLInputElement).blur()
+                      if (e.key === 'Escape') setEditingPage(false)
+                    }}
+                    className="w-11 py-1 bg-s1 border border-green/50 rounded text-[13px] text-white text-center tracking-wider outline-none"
+                  />
+                  <span className="text-[13px] text-gray tracking-wider">/ {totalPages}</span>
+                </span>
+              ) : (
+                <span
+                  onClick={() => { setPageInput(String(page + 1)); setEditingPage(true) }}
+                  className="text-[13px] text-gray tracking-wider min-w-[48px] text-center cursor-pointer border-b border-dashed border-gray2/40 active:text-white transition-colors"
+                >
+                  {page + 1} / {totalPages}
+                </span>
+              )}
               <button disabled={page >= totalPages - 1} onClick={() => loadPage(page + 1)}
                 className="w-9 h-9 bg-s1 border border-bd2 rounded text-white text-lg flex items-center justify-center disabled:opacity-30">›</button>
             </div>
