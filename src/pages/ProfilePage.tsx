@@ -27,7 +27,7 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
         if (p) setProf(p)
         if (c) {
           setCfg(c)
-          if (c.plans.length) setSelected(c.plans[0])
+          if (c.plans.length) setSelected(c.plans[c.plans.length - 1])
         }
       })
       .finally(() => setLoading(false))
@@ -84,12 +84,12 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
 
   return (
     <div className="flex-1 overflow-y-auto pb-14">
-      <div className="p-4 flex flex-col gap-5">
+      <div className="p-4">
 
         {/* Avatar + name + premium badge */}
-        <div className="flex items-center gap-3.5">
+        <div className="flex items-center gap-3.5 mb-[18px]">
           <div
-            className="w-[60px] h-[60px] rounded-2xl flex items-center justify-center text-[20px] font-extrabold shrink-0"
+            className="w-[60px] h-[60px] rounded-[18px] flex items-center justify-center text-[20px] font-extrabold shrink-0"
             style={{ background: 'radial-gradient(circle,rgba(34,197,94,.3),rgba(34,197,94,.05) 65%,transparent)', boxShadow: '0 0 18px rgba(34,197,94,.35)', color: '#4AE885' }}
           >
             {initials}
@@ -97,27 +97,29 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
           <div className="min-w-0">
             <div className="text-[17px] font-extrabold truncate">{name}</div>
             {prof?.is_premium ? (
-              <div className="inline-flex items-center gap-1.5 mt-1 px-2 py-0.5 rounded-md" style={{ background: 'rgba(34,197,94,.12)', border: '1px solid rgba(34,197,94,.3)' }}>
-                <span className="w-1.5 h-1.5 rounded-full bg-green" />
-                <span className="text-[10px] font-bold text-green tracking-wide">PREMIUM{prof.premium_until ? ` · до ${prof.premium_until}` : ''}</span>
+              <div className="inline-flex items-center gap-[5px] mt-[3px] px-2 py-0.5 rounded-md" style={{ background: 'rgba(34,197,94,.12)', border: '1px solid rgba(34,197,94,.3)' }}>
+                <span className="w-[5px] h-[5px] rounded-full" style={{ background: '#4AE885' }} />
+                <span className="text-[10px] font-bold tracking-[.5px]" style={{ color: '#4AE885' }}>
+                  PREMIUM{prof.premium_until ? ` · до ${prof.premium_until}` : ''}
+                </span>
               </div>
             ) : (
-              <div className="inline-flex items-center gap-1.5 mt-1 px-2 py-0.5 rounded-md bg-white/[.06] border border-white/[.08]">
-                <span className="text-[10px] font-bold text-gray2 tracking-wide">FREE</span>
+              <div className="inline-flex items-center gap-[5px] mt-[3px] px-2 py-0.5 rounded-md bg-white/[.06] border border-white/[.08]">
+                <span className="text-[10px] font-bold tracking-[.5px] text-gray2">FREE</span>
               </div>
             )}
           </div>
         </div>
 
         {/* Stats card */}
-        <div className="rounded-2xl px-4 py-1" style={{ border: '1px solid rgba(255,255,255,.08)', background: '#101014' }}>
-          <div className="flex items-center justify-between py-3.5" style={{ borderBottom: '1px solid rgba(255,255,255,.08)' }}>
-            <span className="text-[13px] text-gray">Предложено материалов</span>
-            <span className="text-[14px] font-bold">{prof?.contributions_total ?? 0}</span>
+        <div className="rounded-2xl px-[18px] py-0 mb-3.5" style={{ border: '1px solid rgba(255,255,255,.08)', background: '#101014' }}>
+          <div className="flex justify-between text-[13px]" style={{ padding: '6px 0', borderBottom: '1px solid rgba(255,255,255,.06)' }}>
+            <span style={{ color: '#8a8a93' }}>Предложено материалов</span>
+            <span className="font-bold">{prof?.contributions_total ?? 0}</span>
           </div>
-          <div className="flex items-center justify-between py-3.5">
-            <span className="text-[13px] text-gray">Одобрено</span>
-            <span className="text-[14px] font-bold text-green">
+          <div className="flex justify-between text-[13px]" style={{ padding: '6px 0' }}>
+            <span style={{ color: '#8a8a93' }}>Одобрено</span>
+            <span className="font-bold" style={{ color: '#4AE885' }}>
               {prof?.contributions_approved ?? 0} · +{(prof?.contributions_approved ?? 0) * 2}д premium
             </span>
           </div>
@@ -127,46 +129,48 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
         {cfg.bot_username && (
           <button
             onClick={openSubmit}
-            className="flex items-center gap-3 px-4 py-3.5 rounded-2xl active:bg-white/[.03] transition-colors"
-            style={{ border: '1px solid rgba(34,197,94,.3)', background: 'rgba(34,197,94,.05)' }}
+            className="w-full flex items-center gap-3 rounded-2xl mb-5 cursor-pointer transition-colors duration-150 border-white/[.08] active:border-[rgba(34,197,94,.4)] active:bg-[#131318]"
+            style={{ padding: '13px 16px', borderWidth: 1, borderStyle: 'solid', background: '#101014' }}
           >
-            <div className="w-9 h-9 rounded-full flex items-center justify-center text-[16px] shrink-0 text-green" style={{ background: 'rgba(34,197,94,.14)', border: '1px solid rgba(34,197,94,.35)' }}>
-              ⬆
+            <div
+              className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
+              style={{ background: 'radial-gradient(circle,rgba(34,197,94,.28),rgba(34,197,94,.05) 65%,transparent)', color: '#4AE885' }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="19" x2="12" y2="5" />
+                <polyline points="5 12 12 5 19 12" />
+              </svg>
             </div>
-            <div className="flex-1 text-left">
-              <div className="text-[13px] font-semibold text-white">Предложить материал</div>
-              <div className="text-[11px] text-gray">После модерации добавим в базу</div>
+            <div className="flex-1 text-left min-w-0">
+              <div className="text-[13px] font-bold">Предложить материал</div>
+              <div className="text-[11px]" style={{ color: '#8a8a93' }}>После модерации добавим в базу</div>
             </div>
-            <span className="text-[18px] text-gray2">›</span>
+            <span className="font-extrabold" style={{ color: '#6a6a75' }}>›</span>
           </button>
         )}
 
         {/* Топ контрибьюторов */}
         {top.length > 0 && (
-          <div>
-            <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#9a9aa2] mb-3">Топ контрибьюторов</div>
-            <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,.08)', background: '#101014' }}>
+          <div className="mb-6">
+            <div className="text-[11px] font-bold uppercase mb-3" style={{ letterSpacing: '1.5px', color: '#9a9aa2' }}>Топ контрибьюторов</div>
+            <div className="rounded-[14px]" style={{ border: '1px solid rgba(255,255,255,.08)', background: '#101014', padding: '0 16px' }}>
               {top.map((c, i) => {
                 const me = c.user_id === prof?.user_id
                 return (
-                  <div
-                    key={c.user_id}
-                    className="flex items-center gap-3 px-4 py-3"
-                    style={i < top.length - 1 ? { borderBottom: '1px solid rgba(255,255,255,.06)' } : undefined}
-                  >
-                    <span className="w-4 shrink-0 text-[13px] text-gray2">{i + 1}</span>
-                    <span className={`flex-1 truncate text-[13px] ${me ? 'text-green font-semibold' : 'text-white/85'}`}>
+                  <div key={c.user_id} className="flex items-center gap-2.5" style={{ padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,.06)' }}>
+                    <span className="w-[18px] text-center text-[12px] font-mono shrink-0" style={{ color: '#6a6a75' }}>{i + 1}</span>
+                    <span className={`flex-1 truncate text-[13px] font-semibold ${me ? 'text-green' : ''}`} style={me ? undefined : { color: '#e4e4e8' }}>
                       {c.username ? `@${c.username}` : 'аноним'}{me ? ' (вы)' : ''}
                     </span>
-                    <span className="text-[13px] font-bold text-green">{c.approved}</span>
+                    <span className="text-[13px] font-bold" style={{ color: '#4AE885' }}>{c.approved}</span>
                   </div>
                 )
               })}
               {myRank !== null && myRank > top.length && (
-                <div className="flex items-center gap-3 px-4 py-3" style={{ borderTop: '1px solid rgba(255,255,255,.06)' }}>
-                  <span className="w-4 shrink-0 text-[13px] text-gray2">{myRank}</span>
-                  <span className="flex-1 truncate text-[13px] text-green font-semibold">вы</span>
-                  <span className="text-[13px] font-bold text-green">{myApproved}</span>
+                <div className="flex items-center gap-2.5" style={{ padding: '9px 0' }}>
+                  <span className="w-[18px] text-center text-[12px] font-mono shrink-0" style={{ color: '#6a6a75' }}>{myRank}</span>
+                  <span className="flex-1 truncate text-[13px] font-semibold text-green">вы</span>
+                  <span className="text-[13px] font-bold" style={{ color: '#4AE885' }}>{myApproved}</span>
                 </div>
               )}
             </div>
@@ -176,7 +180,7 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
         {/* Plans */}
         {cfg.plans.length > 0 && (
           <div ref={plansRef}>
-            <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#9a9aa2] mb-3">
+            <div className="text-[11px] font-bold uppercase mb-3" style={{ letterSpacing: '1.5px', color: '#9a9aa2' }}>
               {prof?.is_premium ? 'Продлить premium' : 'Оформить premium'}
             </div>
             {prof?.is_premium && (
@@ -191,15 +195,15 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
                   <button
                     key={p.days}
                     onClick={() => { setSelected(p); setMsg(null) }}
-                    className="flex-1 flex flex-col items-center py-3.5 rounded-2xl transition-colors"
+                    className="flex-1 text-center rounded-xl transition-transform duration-150 active:-translate-y-0.5"
                     style={{
-                      border: active ? '1px solid rgba(34,197,94,.5)' : '1px solid rgba(255,255,255,.08)',
-                      background: active ? 'rgba(34,197,94,.08)' : '#101014',
-                      boxShadow: active ? '0 0 16px rgba(34,197,94,.2)' : undefined,
+                      padding: '12px 6px',
+                      border: `1px solid ${active ? 'rgba(34,197,94,.5)' : 'rgba(255,255,255,.08)'}`,
+                      background: '#101014',
                     }}
                   >
-                    <span className={`text-[14px] font-bold ${active ? 'text-green' : 'text-white'}`}>{p.label}</span>
-                    <span className="text-[11px] text-gray2 mt-0.5">${p.price}</span>
+                    <div className="text-[13px] font-extrabold text-white">{p.label}</div>
+                    <div className="text-[11px] mt-[3px]" style={{ color: '#8a8a93' }}>${p.price}</div>
                   </button>
                 )
               })}
@@ -210,7 +214,8 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
               <button
                 disabled={!!paying}
                 onClick={buyWithCrypto}
-                className="w-full py-[13px] rounded-xl bg-white text-bg text-[13px] font-bold active:opacity-90 disabled:opacity-50 transition-opacity"
+                className="w-full rounded-xl bg-white text-bg text-[14px] font-bold disabled:opacity-50 transition-transform duration-150 active:-translate-y-0.5"
+                style={{ padding: 14 }}
               >
                 {paying === 'crypto'
                   ? 'Открываю…'
