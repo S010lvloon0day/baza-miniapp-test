@@ -295,8 +295,18 @@ export default function MaterialPage({ materialId, sectionId, botUsername, onUpg
                     </div>
                   )}
 
-                  {/* Fallback: PDF/binary or generic error */}
-                  {(docPreview === 'pdf' || docPreview === 'error') && (
+                  {/* PDF preview — rendered inline via the browser's native PDF viewer */}
+                  {docPreview === 'pdf' && furl && (
+                    <iframe
+                      src={furl}
+                      title={mat.title}
+                      className="w-full rounded-2xl border border-white/[.08] block mb-3"
+                      style={{ height: '70vh', background: '#fff' }}
+                    />
+                  )}
+
+                  {/* Fallback: genuinely unreadable document */}
+                  {docPreview === 'error' && (
                     <div className="border border-white/[.08] rounded-2xl bg-s2/70 flex flex-col items-center justify-center gap-3 px-5 py-6 mb-3 text-center">
                       <MediaTypeIcon type="document" size={56} iconSize={24} radius={16} />
                       <div className="text-[13px] text-white/70 leading-snug">
