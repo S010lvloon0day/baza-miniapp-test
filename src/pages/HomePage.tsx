@@ -120,7 +120,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
           <div className="relative flex gap-2.5">
             <button
               onClick={onTabCats}
-              className="flex-1 flex items-center justify-center gap-1.5 py-3.5 rounded-[13px] text-bg text-[13.5px] font-extrabold transition-transform duration-150 active:-translate-y-0.5"
+              className="flex-1 flex items-center justify-center gap-1 py-3.5 rounded-[13px] text-bg text-[12px] whitespace-nowrap font-extrabold transition-transform duration-150 active:-translate-y-0.5"
               style={{ background: 'linear-gradient(180deg,#ffffff,#e8ebe9)', boxShadow: '0 8px 20px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.4) inset' }}
             >
               Смотреть разделы
@@ -131,7 +131,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
             </button>
             <button
               onClick={openSubmit}
-              className="flex-1 py-3.5 rounded-[13px] text-white text-[13.5px] font-bold transition-transform duration-150 active:bg-white/[.1] active:border-white/30 active:-translate-y-0.5"
+              className="flex-1 flex items-center justify-center py-3.5 rounded-[13px] text-white text-[12px] whitespace-nowrap font-bold transition-transform duration-150 active:bg-white/[.1] active:border-white/30 active:-translate-y-0.5"
               style={{ border: '1px solid rgba(255,255,255,.14)', background: 'linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))', boxShadow: '0 4px 14px rgba(0,0,0,.25)' }}
             >
               Предложить материал
