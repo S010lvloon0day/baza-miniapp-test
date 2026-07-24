@@ -57,7 +57,7 @@ export default function BottomNav({ active, onChange }: Props) {
             onClick={() => onChange(id)}
             className="flex-1 flex flex-col items-center gap-1 rounded-xl transition-colors duration-150 active:bg-white/[.06]"
             style={{
-              padding: '7px 2px',
+              padding: '12px 2px',
               background: on ? 'rgba(34,197,94,.14)' : 'transparent',
               color: on ? '#4AE885' : '#75757f',
             }}
