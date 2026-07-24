@@ -87,7 +87,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
             <path
               d="M110 0 C90 60 130 110 100 220"
               stroke="#9FFFC2" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="40 260"
-              style={{ filter: 'drop-shadow(0 0 8px rgba(74,232,133,.95)) drop-shadow(0 0 18px rgba(74,232,133,.7))', animation: 'bazaLinePulse 2.6s linear infinite' }}
+              style={{ filter: 'drop-shadow(0 0 6px rgba(74,232,133,.85))', animation: 'bazaLinePulse 2.6s linear infinite' }}
             />
           </svg>
           <div className="baza-grain" />
@@ -107,7 +107,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
             <br />
             <span
               className="relative inline-block baza-flicker"
-              style={{ color: '#3EEB73', WebkitTextStroke: '1.9px #3EEB73', textShadow: '0 0 2px #7dffab, 0 0 5px rgba(62,235,115,.6), 0 0 9px rgba(62,235,115,.4)' }}
+              style={{ color: '#3EEB73', WebkitTextStroke: '1.9px #3EEB73', textShadow: '0 0 1px #7dffab, 0 0 3px rgba(62,235,115,.4), 0 0 5px rgba(62,235,115,.25)' }}
             >
               в одном месте
             </span>
@@ -256,10 +256,11 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
               if (tg?.openTelegramLink) tg.openTelegramLink('https://t.me/S010lvloon_bot')
               else window.open('https://t.me/S010lvloon_bot', '_blank')
             }}
-            className="w-full flex items-center justify-center gap-2 h-10 rounded border border-bd2 bg-s1 active:border-green active:bg-s2 transition-colors"
+            className="w-full flex items-center justify-center gap-2 h-11 rounded-2xl transition-transform duration-150 active:-translate-y-0.5"
+            style={{ border: '1px solid rgba(255,188,46,.3)', background: 'rgba(255,188,46,.05)' }}
           >
             <span className="text-[13px]">📣</span>
-            <span className="text-[11px] font-semibold tracking-[1px] uppercase text-gray2">
+            <span className="text-[11px] font-bold tracking-[1px] uppercase" style={{ color: '#FFCB57' }}>
               По вопросам рекламы
             </span>
             <span className="text-[11px] text-green font-bold">@S010lvloon_bot</span>
