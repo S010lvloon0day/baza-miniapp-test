@@ -57,12 +57,12 @@ export default function BottomNav({ active, onChange }: Props) {
             onClick={() => onChange(id)}
             className="flex-1 flex flex-col items-center gap-1 rounded-xl transition-colors duration-150 active:bg-white/[.06]"
             style={{
-              padding: '12px 2px',
+              padding: '15px 2px',
               background: on ? 'rgba(34,197,94,.14)' : 'transparent',
               color: on ? '#4AE885' : '#75757f',
             }}
           >
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor">
               {ICONS[id]}
             </svg>
             <span className="text-[9.5px] font-bold tracking-[.1px]">{label}</span>

@@ -73,7 +73,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
           </div>
 
           <div className="relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 mb-[18px]" style={{ border: '1px solid rgba(255,255,255,.15)', background: 'rgba(255,255,255,.03)' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-green" style={{ boxShadow: '0 0 6px #22C55E' }} />
+            <span className="w-1.5 h-1.5 rounded-full bg-green animate-pulse" style={{ boxShadow: '0 0 6px #22C55E' }} />
             <span className="text-[10px] font-bold tracking-wider uppercase text-[#cfcfd4]">База знаний S010lvloon</span>
           </div>
 
@@ -88,14 +88,14 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
           <div className="relative flex gap-2">
             <button
               onClick={onTabCats}
-              className="flex-1 py-[13px] rounded-xl bg-white text-bg text-[13px] font-bold active:opacity-90 transition-opacity"
+              className="flex-1 py-[13px] rounded-xl bg-white text-bg text-[13px] font-bold transition-transform duration-150 active:-translate-y-0.5"
               style={{ boxShadow: '0 6px 18px rgba(255,255,255,.08)' }}
             >
               Смотреть разделы
             </button>
             <button
               onClick={openSubmit}
-              className="flex-1 py-[13px] rounded-xl text-white text-[13px] font-bold active:bg-white/[.08] transition-colors"
+              className="flex-1 py-[13px] rounded-xl text-white text-[13px] font-bold transition-transform duration-150 active:bg-white/[.08] active:-translate-y-0.5"
               style={{ border: '1px solid rgba(255,255,255,.15)', background: 'rgba(255,255,255,.03)' }}
             >
               Предложить материал
@@ -141,7 +141,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.04 }}
                   onClick={() => onMaterial(m.id, m.section_id)}
-                  className="flex items-center gap-3 p-3 rounded-[14px] cursor-pointer active:border-green/40 transition-colors"
+                  className="flex items-center gap-3 p-3 rounded-[14px] cursor-pointer active:border-green/40 transition-transform duration-150 active:translate-x-0.5"
                   style={{ border: '1px solid rgba(255,255,255,.08)', background: '#101014' }}
                 >
                   <div
