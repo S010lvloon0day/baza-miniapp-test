@@ -249,22 +249,36 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
         </div>
 
         {/* Ad contact */}
-        <div className="pb-6 pt-1">
-          <button
-            onClick={() => {
-              const tg = (window as any).Telegram?.WebApp
-              if (tg?.openTelegramLink) tg.openTelegramLink('https://t.me/S010lvloon_bot')
-              else window.open('https://t.me/S010lvloon_bot', '_blank')
-            }}
-            className="w-full flex items-center justify-center gap-2 h-11 rounded-2xl transition-transform duration-150 active:-translate-y-0.5"
-            style={{ border: '1px solid rgba(255,188,46,.3)', background: 'rgba(255,188,46,.05)' }}
+        <div
+          onClick={() => {
+            const tg = (window as any).Telegram?.WebApp
+            if (tg?.openTelegramLink) tg.openTelegramLink('https://t.me/S010lvloon_bot')
+            else window.open('https://t.me/S010lvloon_bot', '_blank')
+          }}
+          className="relative mb-6 flex items-center gap-3.5 cursor-pointer overflow-hidden rounded-2xl transition-transform duration-150 active:-translate-y-0.5"
+          style={{
+            padding: '14px 16px',
+            border: '1px solid rgba(255,188,46,.4)',
+            background: 'linear-gradient(135deg,rgba(255,188,46,.1),rgba(20,15,4,.4) 60%)',
+            boxShadow: '0 8px 20px rgba(255,140,0,.08)',
+          }}
+        >
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg,transparent,rgba(255,188,46,.6),transparent)' }} />
+          <div
+            className="shrink-0 flex items-center justify-center"
+            style={{ width: 40, height: 40, borderRadius: 12, background: 'radial-gradient(circle,rgba(255,188,46,.32),rgba(255,188,46,.06) 68%,transparent)', boxShadow: '0 0 16px rgba(255,188,46,.35)', color: '#FFCB57' }}
           >
-            <span className="text-[13px]">📣</span>
-            <span className="text-[11px] font-bold tracking-[1px] uppercase" style={{ color: '#FFCB57' }}>
-              По вопросам рекламы
-            </span>
-            <span className="text-[11px] text-green font-bold">@S010lvloon_bot</span>
-          </button>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 11v2a2 2 0 0 0 2 2h2l4 4V5L7 9H5a2 2 0 0 0-2 2z" />
+              <path d="M16 8a4 4 0 0 1 0 8" />
+              <path d="M18.5 5.5a8 8 0 0 1 0 13" />
+            </svg>
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[11px] font-bold uppercase tracking-[1px]" style={{ color: '#FFCB57' }}>По вопросам рекламы</div>
+            <div className="text-[13px] font-semibold text-white mt-0.5">@S010lvloon_bot</div>
+          </div>
+          <span className="font-extrabold text-[18px] shrink-0" style={{ color: '#FFCB57' }}>›</span>
         </div>
       </div>
     </div>

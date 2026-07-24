@@ -89,10 +89,12 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
         {/* Avatar + name + premium badge */}
         <div className="flex items-center gap-3.5 mb-[18px]">
           <div
-            className="w-[60px] h-[60px] rounded-[18px] flex items-center justify-center text-[20px] font-extrabold shrink-0"
+            className="w-[60px] h-[60px] rounded-[18px] flex items-center justify-center text-[20px] font-extrabold shrink-0 overflow-hidden"
             style={{ background: 'radial-gradient(circle,rgba(34,197,94,.3),rgba(34,197,94,.05) 65%,transparent)', boxShadow: '0 0 18px rgba(34,197,94,.35)', color: '#4AE885' }}
           >
-            {initials}
+            {prof?.photo_url
+              ? <img src={prof.photo_url} alt={name} className="w-full h-full object-cover" />
+              : initials}
           </div>
           <div className="min-w-0">
             <div className="text-[17px] font-extrabold truncate">{name}</div>
