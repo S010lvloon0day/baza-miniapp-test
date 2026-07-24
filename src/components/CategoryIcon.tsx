@@ -17,7 +17,7 @@ const SVG_PROPS = {
   style: { filter: 'drop-shadow(0 0 4px rgba(34,197,94,.9))' },
 }
 
-const ICON_PATHS: Record<IconKey, ReactNode> = {
+export const ICON_PATHS: Record<IconKey, ReactNode> = {
   icon_book: (
     <>
       <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15z" />
@@ -84,7 +84,7 @@ const ICON_PATHS: Record<IconKey, ReactNode> = {
       <line x1="12" y1="17" x2="12" y2="17.1" />
     </>
   ),
-  icon_folder: <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />,
+  icon_folder: <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />,
 }
 
 // Ordered, first-match-wins. Derived from the live category titles in production
@@ -109,7 +109,7 @@ const KEYWORD_TABLE: Array<[string[], IconKey]> = [
   [['вопрос', 'question', 'faq'], 'icon_question'],
 ]
 
-function resolveIcon(title: string): IconKey {
+export function resolveIcon(title: string): IconKey {
   const lower = title.toLowerCase()
   for (const [keywords, icon] of KEYWORD_TABLE) {
     if (keywords.some(kw => lower.includes(kw))) return icon
