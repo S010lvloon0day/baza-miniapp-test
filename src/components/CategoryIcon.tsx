@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 type IconKey =
   | 'icon_book' | 'icon_card' | 'icon_search' | 'icon_unlock' | 'icon_cpu'
   | 'icon_shield' | 'icon_mask' | 'icon_tool' | 'icon_box' | 'icon_monitor'
-  | 'icon_flame' | 'icon_puzzle' | 'icon_code' | 'icon_question'
+  | 'icon_flame' | 'icon_puzzle' | 'icon_code' | 'icon_question' | 'icon_folder'
 
 const SVG_PROPS = {
   width: 17,
@@ -84,6 +84,7 @@ const ICON_PATHS: Record<IconKey, ReactNode> = {
       <line x1="12" y1="17" x2="12" y2="17.1" />
     </>
   ),
+  icon_folder: <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />,
 }
 
 // Ordered, first-match-wins. Derived from the live category titles in production
@@ -116,8 +117,8 @@ function resolveIcon(title: string): IconKey {
   return 'icon_question'
 }
 
-export default function CategoryIcon({ title }: { title: string }) {
-  const icon = resolveIcon(title)
+export default function CategoryIcon({ title, icon: iconOverride }: { title: string; icon?: IconKey }) {
+  const icon = iconOverride ?? resolveIcon(title)
   return (
     <div
       className="w-full h-full rounded-full flex items-center justify-center"

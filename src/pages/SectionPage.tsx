@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Image, Video, File, Article, Star, Lock, Check } from '@phosphor-icons/react'
+import CategoryIcon from '../components/CategoryIcon'
 import { api } from '../api/client'
 import type { Section, Material } from '../api/client'
 
@@ -44,11 +45,11 @@ const BENEFITS = [
 
 function PremiumUpsell({ section, onUpgrade }: { section: Section; onUpgrade: () => void }) {
   return (
-    <div className="flex-1 overflow-y-auto pb-14">
+    <div className="flex-1 overflow-y-auto pb-navsafe">
       <div className="flex flex-col items-center px-5 py-10 text-center gap-6">
         <div className="relative">
-          <div className="w-24 h-24 bg-[rgba(157,92,255,.10)] border border-[rgba(199,166,255,.25)] rounded-2xl flex items-center justify-center text-5xl">
-            {section.emoji || '📁'}
+          <div className="w-24 h-24 bg-[rgba(157,92,255,.10)] border border-[rgba(199,166,255,.25)] rounded-2xl flex items-center justify-center p-6">
+            <CategoryIcon title={section.title} />
           </div>
           <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-violet rounded-full flex items-center justify-center shadow-lg">
             <Lock size={16} weight="fill" className="text-white" />
@@ -123,11 +124,11 @@ function CoursePaywall({ section, onPurchased }: { section: Section; onPurchased
   }
 
   return (
-    <div className="flex-1 overflow-y-auto pb-14">
+    <div className="flex-1 overflow-y-auto pb-navsafe">
       <div className="flex flex-col items-center px-5 py-10 text-center gap-6">
         <div className="relative">
-          <div className="w-24 h-24 bg-[rgba(40,200,64,.08)] border border-[rgba(40,200,64,.25)] rounded-2xl flex items-center justify-center text-5xl">
-            {section.emoji || '📁'}
+          <div className="w-24 h-24 bg-[rgba(40,200,64,.08)] border border-[rgba(40,200,64,.25)] rounded-2xl flex items-center justify-center p-6">
+            <CategoryIcon title={section.title} />
           </div>
           <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green rounded-full flex items-center justify-center shadow-lg">
             <Lock size={16} weight="fill" className="text-bg" />
@@ -219,13 +220,13 @@ export default function SectionPage({ section, initialPage = 0, onMaterial, onSu
   if (showUpsell) return <PremiumUpsell section={section} onUpgrade={onUpgrade} />
 
   return (
-    <div className="flex-1 overflow-y-auto pb-14">
+    <div className="flex-1 overflow-y-auto pb-navsafe">
       {/* Section header */}
       <div className="mx-4 mt-3 mb-2 overflow-hidden" style={{ border: '1px solid rgba(255,255,255,.08)' }}>
         <div className="flex items-stretch">
-          {/* Emoji block */}
-          <div className="w-16 shrink-0 flex items-center justify-center text-[28px]" style={{ background: 'rgba(255,255,255,.04)', borderRight: '1px solid rgba(255,255,255,.07)' }}>
-            {section.emoji || '📁'}
+          {/* Icon block */}
+          <div className="w-16 shrink-0 flex items-center justify-center p-3.5" style={{ background: 'rgba(255,255,255,.04)', borderRight: '1px solid rgba(255,255,255,.07)' }}>
+            <CategoryIcon title={section.title} />
           </div>
           {/* Info */}
           <div className="flex-1 p-3 min-w-0" style={{ background: 'rgba(255,255,255,.02)' }}>
@@ -247,20 +248,27 @@ export default function SectionPage({ section, initialPage = 0, onMaterial, onSu
         <section>
           <div className="px-4 pt-4 pb-2 text-[11px] font-mono tracking-[1px] text-green/70">// ПОДРАЗДЕЛЫ</div>
           <div className="grid grid-cols-4 gap-2 px-4 pb-2">
-            {subs.map(s => (
-              <div key={s.id} onClick={() => onSubsection(s)}
-                className={`relative p-2.5 flex flex-col items-center gap-1.5 cursor-pointer overflow-hidden transition-colors
+            {subs.map((s, i) => (
+              <motion.div key={s.id}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.04 }}
+                onClick={() => onSubsection(s)}
+                className={`relative p-2.5 rounded-2xl flex flex-col items-center gap-1.5 cursor-pointer overflow-hidden transition-transform duration-150 active:-translate-y-0.5
                   ${s.locked
                     ? 'border border-[rgba(157,92,255,.2)] active:bg-[rgba(157,92,255,.07)]'
-                    : 'border border-bd active:border-white/30 active:bg-white/[.03]'}`}
+                    : 'border border-bd active:border-green/50'}`}
                 style={{ background: s.locked ? 'rgba(157,92,255,.04)' : 'rgba(255,255,255,.02)' }}>
                 <div className="absolute top-0 left-0 right-0 h-px" style={{
                   background: s.locked
                     ? 'linear-gradient(90deg, transparent, rgba(157,92,255,.4), transparent)'
                     : 'linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent)'
                 }} />
-                <div className="relative w-10 h-10 flex items-center justify-center text-xl">
-                  <span className={s.locked ? 'opacity-50' : ''}>{s.emoji || '📁'}</span>
+                <span className="absolute top-1.5 left-1.5 font-mono text-[8px] text-gray2/60 leading-none tabular-nums">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div className={`relative w-10 h-10 flex items-center justify-center ${s.locked ? 'opacity-50' : ''}`}>
+                  <CategoryIcon title={s.title} icon="icon_folder" />
                   {s.locked && (
                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#9D5CFF] rounded-full flex items-center justify-center">
                       <Lock size={8} weight="fill" className="text-white" />
@@ -269,7 +277,7 @@ export default function SectionPage({ section, initialPage = 0, onMaterial, onSu
                 </div>
                 <span className={`text-[9px] font-mono uppercase tracking-[.5px] text-center leading-tight w-full line-clamp-2
                   ${s.locked ? 'text-violet/50' : 'text-gray'}`}>{s.title}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>

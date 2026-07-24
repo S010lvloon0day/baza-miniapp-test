@@ -30,7 +30,7 @@ export default function CatsPage({ onSection, onGiveaway }: Props) {
   const rest = cats.filter(s => s.title !== FEATURED_TITLE)
 
   return (
-    <div className="flex-1 overflow-y-auto pb-14">
+    <div className="flex-1 overflow-y-auto pb-navsafe">
       <div className="px-4 pt-4 pb-4 text-[11px] font-mono text-gray2">
         // {cats.length} разделов доступно
       </div>

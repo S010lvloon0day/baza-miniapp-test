@@ -61,7 +61,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
   const featured = sections.find(s => s.title === 'Знания S010lvloon')
 
   return (
-    <div className="flex-1 overflow-y-auto pb-14">
+    <div className="flex-1 overflow-y-auto pb-navsafe">
       <div className="px-4 pt-3">
 
         {/* Hero */}
@@ -206,8 +206,10 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
             >
               <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,188,46,.8), transparent)' }} />
               <div className="flex items-center gap-3 px-4 py-4">
-                <div className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'rgba(255,188,46,.14)', border: '1px solid rgba(255,188,46,.35)' }}>
-                  {featured.emoji || '🧠'}
+                <div className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'rgba(255,188,46,.14)', border: '1px solid rgba(255,188,46,.35)', color: '#FFCB57' }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style={{ filter: 'drop-shadow(0 0 5px rgba(255,188,46,.9))' }}>
+                    <path d="M12 2l2.6 6.6L21 9l-5 4.3L17.5 20 12 16.3 6.5 20 8 13.3 3 9l6.4-.4z" />
+                  </svg>
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="inline-flex items-center gap-1 px-1.5 py-0.5 mb-1 rounded-sm" style={{ background: 'rgba(255,188,46,.18)' }}>

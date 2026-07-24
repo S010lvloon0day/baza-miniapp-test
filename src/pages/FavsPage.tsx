@@ -39,7 +39,7 @@ export default function FavsPage({ onMaterial }: Props) {
   )
 
   return (
-    <div className="flex-1 overflow-y-auto pb-14">
+    <div className="flex-1 overflow-y-auto pb-navsafe">
       <div className="px-4 pt-3 pb-1">
         <span className="text-[11px] font-bold tracking-[2px] uppercase text-gray">{items.length} сохранено</span>
       </div>

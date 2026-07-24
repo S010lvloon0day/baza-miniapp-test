@@ -83,7 +83,7 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
   const initials = name.slice(0, 2).toUpperCase()
 
   return (
-    <div className="flex-1 overflow-y-auto pb-14">
+    <div className="flex-1 overflow-y-auto pb-navsafe">
       <div className="p-4">
 
         {/* Avatar + name + premium badge */}
