@@ -4,6 +4,7 @@ import { CaretRight, CaretDown, Crown } from '@phosphor-icons/react'
 import { api } from '../api/client'
 import type { Section, Material, Banner, TodaySection } from '../api/client'
 import BannerCard from '../components/BannerCard'
+import CategoryIcon from '../components/CategoryIcon'
 
 interface Props {
   onSection: (s: Section) => void
@@ -75,8 +76,8 @@ export default function HomePage({ onSection, onMaterial, onTabCats, onGiveaway,
         {/* Title bar */}
         <div className="flex items-center gap-2 px-4 py-2.5 border-b" style={{ background: 'rgba(255,255,255,.04)', borderColor: 'rgba(255,255,255,.06)' }}>
           <div className="w-3 h-3 rounded-full shrink-0" style={{ background: '#FF5F57', boxShadow: '0 0 6px rgba(255,95,87,.7)' }} />
-          <div className="w-3 h-3 rounded-full shrink-0" style={{ background: '#FEBC2E', boxShadow: '0 0 6px rgba(254,188,46,.7)' }} />
-          <div className="w-3 h-3 rounded-full shrink-0" style={{ background: '#28C840', boxShadow: '0 0 6px rgba(40,200,64,.7)' }} />
+          <div className="w-3 h-3 rounded-full shrink-0" style={{ background: '#FFBC2E', boxShadow: '0 0 6px rgba(255,188,46,.7)' }} />
+          <div className="w-3 h-3 rounded-full shrink-0" style={{ background: '#22C55E', boxShadow: '0 0 6px rgba(34,197,94,.7)' }} />
           <span className="font-mono text-[10px] text-gray2 flex-1 text-center">knowledge_base.sh — bash — 80×24</span>
         </div>
 
@@ -84,7 +85,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, onGiveaway,
         <div className="px-4 py-3">
           {/* Prompt */}
           <div className="flex items-center gap-1 font-mono text-[11px] mb-2 flex-wrap">
-            <span style={{ color: '#28C840' }}>root@s010</span>
+            <span style={{ color: '#22C55E' }}>root@s010</span>
             <span className="text-gray2">:</span>
             <span style={{ color: '#60A5FA' }}>~/knowledge</span>
             <span className="text-white/30 mx-0.5">$</span>
@@ -108,7 +109,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, onGiveaway,
               <span className="text-gray2">Авторизация пользователя</span>
             </div>
             <div className="flex gap-2">
-              <span style={{ color: '#28C840' }}>[&nbsp;OK&nbsp;]</span>
+              <span style={{ color: '#22C55E' }}>[&nbsp;OK&nbsp;]</span>
               <span className="text-white/50">Система готова</span>
               <span className="blink text-white ml-0.5">█</span>
             </div>
@@ -124,7 +125,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, onGiveaway,
           className="mx-4 mt-2.5 flex items-center gap-2 px-3.5 py-2.5 cursor-pointer font-mono text-[11px] active:opacity-70 transition-opacity"
           style={{ background: 'rgba(40,200,64,.04)', border: '1px dashed rgba(40,200,64,.4)' }}
         >
-          <span className="shrink-0 font-bold" style={{ color: '#28C840' }}>+</span>
+          <span className="shrink-0 font-bold" style={{ color: '#22C55E' }}>+</span>
           <span className="shrink-0 text-white/85">./contribute</span>
           <span className="flex-1 truncate text-white/90">— предложить материал в базу</span>
           <span className="shrink-0 font-bold" style={{ color: 'rgba(40,200,64,.9)' }}>›</span>
@@ -332,8 +333,8 @@ export default function HomePage({ onSection, onMaterial, onTabCats, onGiveaway,
               <span className="absolute top-1.5 left-1.5 font-mono text-[8px] text-gray2/60 leading-none tabular-nums">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <div className="w-10 h-10 flex items-center justify-center text-xl">
-                {s.emoji || '📁'}
+              <div className="w-10 h-10 flex items-center justify-center">
+                <CategoryIcon title={s.title} />
               </div>
               <span className="text-[9px] font-mono uppercase tracking-[0.5px] text-gray text-center leading-tight w-full line-clamp-2">
                 {s.title}

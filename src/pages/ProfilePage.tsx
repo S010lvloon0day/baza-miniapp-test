@@ -93,8 +93,8 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
           {/* Title bar */}
           <div className="flex items-center gap-2 px-3 py-2 border-b" style={{ background: 'rgba(255,255,255,.04)', borderColor: 'rgba(255,255,255,.06)' }}>
             <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: '#FF5F57', boxShadow: '0 0 5px rgba(255,95,87,.6)' }} />
-            <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: '#FEBC2E', boxShadow: '0 0 5px rgba(254,188,46,.6)' }} />
-            <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: '#28C840', boxShadow: '0 0 5px rgba(40,200,64,.6)' }} />
+            <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: '#FFBC2E', boxShadow: '0 0 5px rgba(255,188,46,.6)' }} />
+            <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: '#22C55E', boxShadow: '0 0 5px rgba(34,197,94,.6)' }} />
             <span className="font-mono text-[10px] text-gray2 flex-1 text-center">cat ~/.config/user.conf</span>
           </div>
           {/* Config content */}
@@ -119,7 +119,7 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
                 <span className="text-gray">tier</span>
                 <span className="text-gray2">     = </span>
                 {prof?.is_premium
-                  ? <span style={{ color: '#28C840' }}>premium</span>
+                  ? <span style={{ color: '#22C55E' }}>premium</span>
                   : <span className="text-gray2">free</span>}
               </div>
               {prof?.is_premium && prof.premium_until && (
@@ -133,7 +133,7 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
                 <span className="text-gray">status</span>
                 <span className="text-gray2">   = </span>
                 {prof?.is_premium
-                  ? <span style={{ color: '#28C840' }}>● active</span>
+                  ? <span style={{ color: '#22C55E' }}>● active</span>
                   : <span className="text-gray2">○ free_tier</span>}
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
               <div className="pl-4">
                 <span className="text-gray">approved</span>
                 <span className="text-gray2">&nbsp;&nbsp;= </span>
-                <span style={{ color: '#28C840' }}>{prof?.contributions_approved ?? 0}</span>
+                <span style={{ color: '#22C55E' }}>{prof?.contributions_approved ?? 0}</span>
                 <span className="text-gray2"> · </span>
                 <span className="text-white/50">+{(prof?.contributions_approved ?? 0) * 2}д premium</span>
               </div>
@@ -178,8 +178,8 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
           <div className="terminal-glow overflow-hidden" style={{ background: '#04040C', border: '1px solid rgba(255,255,255,.09)' }}>
             <div className="flex items-center gap-2 px-3 py-2 border-b" style={{ background: 'rgba(255,255,255,.04)', borderColor: 'rgba(255,255,255,.06)' }}>
               <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: '#FF5F57', boxShadow: '0 0 5px rgba(255,95,87,.6)' }} />
-              <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: '#FEBC2E', boxShadow: '0 0 5px rgba(254,188,46,.6)' }} />
-              <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: '#28C840', boxShadow: '0 0 5px rgba(40,200,64,.6)' }} />
+              <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: '#FFBC2E', boxShadow: '0 0 5px rgba(255,188,46,.6)' }} />
+              <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: '#22C55E', boxShadow: '0 0 5px rgba(34,197,94,.6)' }} />
               <span className="font-mono text-[10px] text-gray2 flex-1 text-center">🏆 top_contributors.log</span>
             </div>
             <div className="px-4 py-3 font-mono text-[11px] leading-[2]">
@@ -193,7 +193,7 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
                     <span className={`flex-1 truncate ${me ? 'text-green font-semibold' : 'text-white/85'}`}>
                       {c.username ? `@${c.username}` : 'аноним'}{me ? ' (вы)' : ''}
                     </span>
-                    <span style={{ color: '#28C840' }}>{c.approved}</span>
+                    <span style={{ color: '#22C55E' }}>{c.approved}</span>
                   </div>
                 )
               })}
@@ -202,7 +202,7 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
                 <div className="flex items-center gap-2 mt-1.5 pt-1.5 border-t border-bd/50">
                   <span className="w-6 shrink-0 text-center text-gray2">#{myRank}</span>
                   <span className="flex-1 truncate text-green font-semibold">вы</span>
-                  <span style={{ color: '#28C840' }}>{myApproved}</span>
+                  <span style={{ color: '#22C55E' }}>{myApproved}</span>
                 </div>
               )}
             </div>

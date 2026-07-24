@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Lock } from '@phosphor-icons/react'
+import CategoryIcon from '../components/CategoryIcon'
 import { api } from '../api/client'
 import type { Section } from '../api/client'
 
@@ -94,11 +95,11 @@ export default function CatsPage({ onSection, onGiveaway }: Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.04 }}
             onClick={() => onSection(s)}
-            className={`relative p-2.5 flex flex-col items-center gap-1.5 cursor-pointer overflow-hidden transition-colors
+            className={`relative p-2.5 rounded-2xl flex flex-col items-center gap-1.5 cursor-pointer overflow-hidden transition-colors
               ${s.locked
                 ? 'border border-[rgba(157,92,255,.2)] active:bg-[rgba(157,92,255,.07)]'
-                : 'border border-bd active:border-white/30 active:bg-white/[.03]'}`}
-            style={{ background: s.locked ? 'rgba(157,92,255,.04)' : 'rgba(255,255,255,.02)' }}
+                : 'border border-white/[.09] active:border-green/50'}`}
+            style={{ background: s.locked ? 'rgba(157,92,255,.04)' : 'radial-gradient(120% 100% at 50% 0%, rgba(255,255,255,.05), transparent 60%), #101014' }}
           >
             <div className="absolute top-0 left-0 right-0 h-px" style={{
               background: s.locked
@@ -108,8 +109,8 @@ export default function CatsPage({ onSection, onGiveaway }: Props) {
             <span className="absolute top-1.5 left-1.5 font-mono text-[8px] text-gray2/60 leading-none tabular-nums">
               {String(i + 1).padStart(2, '0')}
             </span>
-            <div className="relative w-10 h-10 flex items-center justify-center text-xl">
-              <span className={s.locked ? 'opacity-50' : ''}>{s.emoji || '📁'}</span>
+            <div className={`relative w-10 h-10 flex items-center justify-center ${s.locked ? 'opacity-50' : ''}`}>
+              <CategoryIcon title={s.title} />
               {s.locked && (
                 <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#9D5CFF] rounded-full flex items-center justify-center">
                   <Lock size={8} weight="fill" className="text-white" />

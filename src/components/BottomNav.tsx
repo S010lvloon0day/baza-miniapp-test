@@ -26,10 +26,13 @@ export default function BottomNav({ active, onChange }: Props) {
               ${on ? 'text-green' : 'text-gray2'}`}
           >
             {on && (
-              <span
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-white"
-                style={{ boxShadow: '0 0 8px rgba(255,255,255,.8), 0 0 16px rgba(255,255,255,.3)' }}
-              />
+              <>
+                <span
+                  className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-green"
+                  style={{ boxShadow: '0 0 8px rgba(34,197,94,.8), 0 0 16px rgba(34,197,94,.3)' }}
+                />
+                <span className="absolute inset-x-2 inset-y-1.5 bg-green/10 rounded-xl -z-10" />
+              </>
             )}
             <Icon size={20} weight={on ? 'fill' : 'regular'} />
             {label}
