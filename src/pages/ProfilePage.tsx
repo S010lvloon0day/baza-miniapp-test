@@ -198,7 +198,7 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
                     className="flex-1 text-center rounded-xl transition-transform duration-150 active:-translate-y-0.5"
                     style={{
                       padding: '12px 6px',
-                      border: `1px solid ${active ? 'rgba(34,197,94,.5)' : 'rgba(255,255,255,.08)'}`,
+                      border: `1px solid ${active ? 'rgba(34,197,94,.6)' : 'rgba(255,255,255,.08)'}`,
                       background: '#101014',
                     }}
                   >
