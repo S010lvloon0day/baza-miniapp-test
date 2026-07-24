@@ -13,8 +13,6 @@ import GiveawayPage from './pages/GiveawayPage'
 import BottomNav from './components/BottomNav'
 import type { Tab } from './components/BottomNav'
 import Header from './components/Header'
-import BazaMark from './components/BazaMark'
-import { MagnifyingGlass, Bell } from '@phosphor-icons/react'
 import NotifySheet from './components/NotifySheet'
 import { api } from './api/client'
 import type { Section } from './api/client'
@@ -130,31 +128,8 @@ export default function App() {
 
   const renderHeader = () => {
     if (!top) {
-      if (tab === 'home') return (
-        <header className="sticky top-0 z-40 bg-bg/95 backdrop-blur border-b border-white/[.08] px-4 flex items-center gap-2.5 h-[56px] shrink-0">
-          <div
-            className="w-8 h-8 rounded-[10px] flex items-center justify-center shrink-0"
-            style={{ background: 'linear-gradient(155deg,#16211a,#0d0f0e)', border: '1px solid rgba(34,197,94,.35)' }}
-          >
-            <BazaMark size={16} />
-          </div>
-          <span className="flex-1 text-[15px] font-extrabold tracking-wide">BAZA<span className="text-green">.</span></span>
-          <button
-            className="w-8 h-8 rounded-full bg-white/[.06] flex items-center justify-center active:bg-white/[.14] transition-colors shrink-0"
-            onClick={() => switchTab('search')}
-          >
-            <MagnifyingGlass size={16} weight="bold" />
-          </button>
-          <button
-            className="w-8 h-8 rounded-full bg-white/[.06] flex items-center justify-center active:bg-white/[.14] transition-colors shrink-0"
-            onClick={() => setNotifyOpen(true)}
-          >
-            <Bell size={16} weight="bold" />
-          </button>
-        </header>
-      )
-      const titles: Record<Tab, string> = { home: '', cats: 'Категории', search: 'Поиск', favs: 'Избранное', recent: 'История', prof: 'Профиль' }
-      return <Header showLogo={tab === 'cats'} title={titles[tab]} />
+      const titles: Record<Tab, string> = { home: '', cats: 'Разделы', search: 'Поиск', favs: 'Избранное', recent: 'История', prof: 'Профиль' }
+      return <Header title={titles[tab]} onSearch={() => switchTab('search')} onBell={() => setNotifyOpen(true)} />
     }
     if (top.type === 'giveaway') {
       return <Header showBack onBack={goBack} title="Секретный розыгрыш" />

@@ -14,14 +14,17 @@ interface Props { active: Tab; onChange: (t: Tab) => void }
 
 export default function BottomNav({ active, onChange }: Props) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 h-[60px] bg-s1/95 backdrop-blur border-t border-bd flex z-50">
+    <nav
+      className="fixed bottom-0 left-0 right-0 bg-s1/95 backdrop-blur border-t border-bd flex z-50"
+      style={{ paddingTop: 8, paddingBottom: 'calc(env(safe-area-inset-bottom, 10px) + 8px)' }}
+    >
       {TABS.map(({ id, icon: Icon, label }) => {
         const on = active === id
         return (
           <button
             key={id}
             onClick={() => onChange(id)}
-            className={`flex-1 flex flex-col items-center justify-center gap-0.5 text-[9px] font-mono tracking-wide transition-colors duration-150 relative
+            className={`flex-1 flex flex-col items-center justify-center gap-0.5 py-1 text-[9px] font-mono tracking-wide transition-colors duration-150 relative
               ${on ? 'text-green' : 'text-gray2'}`}
           >
             {on && (
