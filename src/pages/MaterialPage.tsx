@@ -111,6 +111,18 @@ export default function MaterialPage({ materialId, sectionId, botUsername, onUpg
 
   const navigate = (id: number) => onNavId?.(id)
 
+  const [editingIdx, setEditingIdx] = useState(false)
+  const [idxInput, setIdxInput] = useState('')
+  const commitIdxJump = () => {
+    const n = parseInt(idxInput, 10)
+    if (Number.isFinite(n)) {
+      const clamped = Math.min(Math.max(n, 1), sectionMats.length)
+      const targetId = sectionMats[clamped - 1]
+      if (targetId !== undefined && targetId !== materialId) navigate(targetId)
+    }
+    setEditingIdx(false)
+  }
+
   const initData = encodeURIComponent(tg?.initData || '')
   const furl = mat?.file_url ? `${API_BASE}${mat.file_url}?init_data=${initData}` : null
 
@@ -340,10 +352,31 @@ export default function MaterialPage({ materialId, sectionId, botUsername, onUpg
             className="w-11 h-11 bg-gradient-to-b from-s2 to-s1 border border-bd2 rounded-xl flex items-center justify-center text-white disabled:opacity-25 active:bg-bd2 transition-colors">
             <CaretLeft size={20} weight="bold" />
           </button>
-          <span className="text-[13px] tracking-widest">
-            <span className="font-semibold text-white">{idx >= 0 ? idx + 1 : '—'}</span>
-            <span className="text-gray2"> / {sectionMats.length}</span>
-          </span>
+          {editingIdx ? (
+            <span className="flex items-center gap-1.5">
+              <input
+                type="number" inputMode="numeric" min={1} max={sectionMats.length} autoFocus
+                value={idxInput}
+                onChange={e => setIdxInput(e.target.value)}
+                onFocus={e => e.currentTarget.select()}
+                onBlur={commitIdxJump}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') (e.target as HTMLInputElement).blur()
+                  if (e.key === 'Escape') setEditingIdx(false)
+                }}
+                className="w-11 py-1 bg-s2 border border-green/50 rounded text-[13px] text-white text-center tracking-widest outline-none"
+              />
+              <span className="text-[13px] text-gray2 tracking-widest">/ {sectionMats.length}</span>
+            </span>
+          ) : (
+            <span
+              onClick={() => { setIdxInput(String(idx >= 0 ? idx + 1 : 1)); setEditingIdx(true) }}
+              className="text-[13px] tracking-widest cursor-pointer border-b border-dashed border-gray2/40 active:opacity-70 transition-opacity"
+            >
+              <span className="font-semibold text-white">{idx >= 0 ? idx + 1 : '—'}</span>
+              <span className="text-gray2"> / {sectionMats.length}</span>
+            </span>
+          )}
           <button disabled={!nextId} onClick={() => nextId && navigate(nextId)}
             className="w-11 h-11 bg-gradient-to-b from-s2 to-s1 border border-bd2 rounded-xl flex items-center justify-center text-white disabled:opacity-25 active:bg-bd2 transition-colors">
             <CaretRight size={20} weight="bold" />
