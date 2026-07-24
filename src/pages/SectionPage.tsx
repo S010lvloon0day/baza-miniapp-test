@@ -354,7 +354,7 @@ export default function SectionPage({ section, initialPage = 0, onMaterial, onSu
           {totalPages > 1 && (
             <div className="flex items-center justify-center gap-2 py-4">
               <button disabled={page === 0} onClick={() => loadPage(page - 1)}
-                className="w-9 h-9 bg-s1 border border-bd2 rounded text-white text-lg flex items-center justify-center disabled:opacity-30">‹</button>
+                className="w-9 h-9 bg-s2 border border-white/15 rounded text-white text-lg flex items-center justify-center disabled:opacity-30">‹</button>
               {editingPage ? (
                 <span className="flex items-center gap-1.5">
                   <input
@@ -380,7 +380,7 @@ export default function SectionPage({ section, initialPage = 0, onMaterial, onSu
                 </span>
               )}
               <button disabled={page >= totalPages - 1} onClick={() => loadPage(page + 1)}
-                className="w-9 h-9 bg-s1 border border-bd2 rounded text-white text-lg flex items-center justify-center disabled:opacity-30">›</button>
+                className="w-9 h-9 bg-s2 border border-white/15 rounded text-white text-lg flex items-center justify-center disabled:opacity-30">›</button>
             </div>
           )}
         </section>
