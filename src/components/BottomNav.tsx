@@ -55,10 +55,12 @@ export default function BottomNav({ active, onChange }: Props) {
           <button
             key={id}
             onClick={() => onChange(id)}
-            className="flex-1 flex flex-col items-center gap-1 rounded-xl transition-colors duration-150 active:bg-white/[.06]"
+            className="flex-1 flex flex-col items-center gap-1 rounded-[13px] transition-colors duration-150 active:bg-white/[.06]"
             style={{
               padding: '15px 2px',
-              background: on ? 'rgba(34,197,94,.14)' : 'transparent',
+              background: on ? 'linear-gradient(180deg,rgba(34,197,94,.22),rgba(34,197,94,.08))' : 'transparent',
+              border: on ? '1px solid rgba(74,232,133,.55)' : '1px solid transparent',
+              boxShadow: on ? '0 0 14px rgba(34,197,94,.3)' : 'none',
               color: on ? '#4AE885' : '#75757f',
             }}
           >

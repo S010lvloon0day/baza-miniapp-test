@@ -45,7 +45,7 @@ export default function RecentPage({ onMaterial }: Props) {
       <div className="mx-4 flex flex-col divide-y divide-bd">
         {items.map(m => (
           <div key={m.id} onClick={() => onMaterial(m.id, m.section_id)}
-            className="flex items-center gap-3 py-3.5 cursor-pointer active:bg-s1 -mx-4 px-4 transition-colors">
+            className="flex items-center gap-3 py-3.5 cursor-pointer active:bg-s1 active:border-green/40 active:translate-x-0.5 -mx-4 px-4 transition-transform duration-150 border border-transparent rounded-2xl">
             <div className="w-11 h-11 bg-gradient-to-br from-s2 to-bg rounded-xl border border-bd2 flex items-center justify-center text-xl shrink-0">
               {typeIcon(m.media_type)}
             </div>

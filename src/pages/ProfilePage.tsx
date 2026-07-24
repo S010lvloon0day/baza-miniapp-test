@@ -133,10 +133,10 @@ export default function ProfilePage({ scrollToPlans, onScrolled }: Props) {
             style={{ padding: '13px 16px', borderWidth: 1, borderStyle: 'solid', background: '#101014' }}
           >
             <div
-              className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
-              style={{ background: 'radial-gradient(circle,rgba(34,197,94,.28),rgba(34,197,94,.05) 65%,transparent)', boxShadow: '0 0 14px rgba(34,197,94,.3)', color: '#4AE885' }}
+              className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 baza-ring-pulse"
+              style={{ background: 'radial-gradient(circle,rgba(34,197,94,.28),rgba(34,197,94,.05) 65%,transparent)', color: '#4AE885' }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="19" x2="12" y2="5" />
                 <polyline points="5 12 12 5 19 12" />
               </svg>

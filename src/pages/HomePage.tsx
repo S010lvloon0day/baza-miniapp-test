@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Crown } from '@phosphor-icons/react'
+import { Crown, CaretDown } from '@phosphor-icons/react'
 import { api } from '../api/client'
 import type { Section, Material, Banner } from '../api/client'
 import BannerCard from '../components/BannerCard'
@@ -20,6 +20,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
   const [banners, setBanners] = useState<Banner[]>([])
   const [totalCount, setTotalCount] = useState(0)
   const [loading, setLoading] = useState(true)
+  const [newOpen, setNewOpen] = useState(true)
 
   useEffect(() => {
     let alive = true
@@ -65,38 +66,72 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
 
         {/* Hero */}
         <div
-          className="relative overflow-hidden rounded-[22px] px-5 pt-[22px] pb-6 mb-5"
-          style={{ border: '1px solid rgba(255,255,255,.08)', background: 'radial-gradient(120% 100% at 100% 0%, rgba(34,197,94,.10), transparent 55%), #0D0D11' }}
+          className="relative overflow-hidden rounded-[22px] px-5 pt-6 pb-6 mb-5"
+          style={{ border: '1px solid rgba(255,255,255,.08)', background: 'radial-gradient(120% 100% at 100% 0%, rgba(34,197,94,.14), transparent 55%), #0D0D11' }}
         >
-          <div className="absolute pointer-events-none" style={{ opacity: .045, right: -30, top: 20 }}>
-            <BazaMark size={200} color="#fff" />
+          {/* Decorative orbit rings + particles */}
+          <svg width="260" height="260" viewBox="0 0 260 260" fill="none" className="absolute pointer-events-none" style={{ right: -70, top: -60, opacity: .5 }}>
+            <circle cx="130" cy="130" r="90" stroke="#22C55E" strokeOpacity=".18" strokeWidth="1" />
+            <circle cx="130" cy="130" r="115" stroke="#22C55E" strokeOpacity=".1" strokeWidth="1" />
+            <circle cx="215" cy="60" r="3" fill="#4AE885" fillOpacity=".6" />
+            <circle cx="240" cy="130" r="2" fill="#4AE885" fillOpacity=".5" />
+            <circle cx="190" cy="20" r="2" fill="#4AE885" fillOpacity=".5" />
+          </svg>
+          {/* Diamond watermark */}
+          <div className="absolute pointer-events-none" style={{ right: 6, top: 26, opacity: .06 }}>
+            <BazaMark size={150} color="#fff" />
           </div>
+          {/* Animated light streak */}
+          <svg width="140" height="220" viewBox="0 0 140 220" fill="none" className="absolute pointer-events-none" style={{ right: 14, top: -10 }}>
+            <path d="M110 0 C90 60 130 110 100 220" stroke="#4AE885" strokeWidth="2" strokeLinecap="round" opacity=".3" />
+            <path
+              d="M110 0 C90 60 130 110 100 220"
+              stroke="#9FFFC2" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="40 260"
+              style={{ filter: 'drop-shadow(0 0 8px rgba(74,232,133,.95)) drop-shadow(0 0 18px rgba(74,232,133,.7))', animation: 'bazaLinePulse 2.6s linear infinite' }}
+            />
+          </svg>
+          <div className="baza-grain" />
 
           <div className="relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 mb-[18px]" style={{ border: '1px solid rgba(255,255,255,.15)', background: 'rgba(255,255,255,.03)' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-green animate-pulse" style={{ boxShadow: '0 0 6px #22C55E' }} />
+            <span className="w-1.5 h-1.5 rounded-full baza-dot-pulse" style={{ background: '#22C55E' }} />
             <span className="text-[10px] font-bold tracking-wider uppercase text-[#cfcfd4]">База знаний S010lvloon</span>
           </div>
 
-          <div className="relative text-[27px] font-extrabold leading-[1.16] tracking-[-.4px] mb-2.5">
-            Все материалы<br />
-            <span className="text-green" style={{ textShadow: '0 0 24px rgba(34,197,94,.5)' }}>в одном месте</span>
+          <div className="relative uppercase mb-2.5" style={{ fontFamily: "'Anton', sans-serif", fontSize: 35, lineHeight: 1.12, letterSpacing: '-1.6px' }}>
+            <span
+              className="relative inline-block"
+              style={{ color: '#fff', WebkitTextStroke: '1.9px #fff', textShadow: '1px 2px 0 rgba(0,0,0,.55), -1px 0 0 rgba(0,0,0,.15), 0 -1px 0 rgba(255,255,255,.5)' }}
+            >
+              Все материалы
+            </span>
+            <br />
+            <span
+              className="relative inline-block baza-flicker"
+              style={{ color: '#3EEB73', WebkitTextStroke: '1.9px #3EEB73', textShadow: '0 0 2px #7dffab, 0 0 5px rgba(62,235,115,.6), 0 0 9px rgba(62,235,115,.4)' }}
+            >
+              в одном месте
+            </span>
           </div>
           <div className="relative text-[13px] text-[#9a9aa2] leading-relaxed mb-5 max-w-[270px]">
             Гайды, инструменты и разборы по темам. Открывай раздел или ищи материал по названию.
           </div>
 
-          <div className="relative flex gap-2">
+          <div className="relative flex gap-2.5">
             <button
               onClick={onTabCats}
-              className="flex-1 py-[13px] rounded-xl bg-white text-bg text-[13px] font-bold transition-transform duration-150 active:-translate-y-0.5"
-              style={{ boxShadow: '0 6px 18px rgba(255,255,255,.08)' }}
+              className="flex-1 flex items-center justify-center gap-1.5 py-3.5 rounded-[13px] text-bg text-[13.5px] font-extrabold transition-transform duration-150 active:-translate-y-0.5"
+              style={{ background: 'linear-gradient(180deg,#ffffff,#e8ebe9)', boxShadow: '0 8px 20px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.4) inset' }}
             >
               Смотреть разделы
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
             </button>
             <button
               onClick={openSubmit}
-              className="flex-1 py-[13px] rounded-xl text-white text-[13px] font-bold transition-transform duration-150 active:bg-white/[.08] active:-translate-y-0.5"
-              style={{ border: '1px solid rgba(255,255,255,.15)', background: 'rgba(255,255,255,.03)' }}
+              className="flex-1 py-3.5 rounded-[13px] text-white text-[13.5px] font-bold transition-transform duration-150 active:bg-white/[.1] active:border-white/30 active:-translate-y-0.5"
+              style={{ border: '1px solid rgba(255,255,255,.14)', background: 'linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))', boxShadow: '0 4px 14px rgba(0,0,0,.25)' }}
             >
               Предложить материал
             </button>
@@ -110,55 +145,52 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
           </div>
         )}
 
-        {/* Stat bar */}
-        <div className="flex rounded-2xl py-4 mb-6" style={{ border: '1px solid rgba(255,255,255,.08)', background: '#0D0D11' }}>
-          <div className="flex-1 text-center">
-            <div className="text-[18px] font-extrabold">{totalCount}+</div>
-            <div className="text-[10px] text-[#8a8a93] mt-[3px]">материалов</div>
-          </div>
-          <div className="flex-1 text-center" style={{ borderLeft: '1px solid rgba(255,255,255,.08)', borderRight: '1px solid rgba(255,255,255,.08)' }}>
-            <div className="text-[18px] font-extrabold">100%</div>
-            <div className="text-[10px] text-[#8a8a93] mt-[3px]">бесплатно</div>
-          </div>
-          <div className="flex-1 text-center">
-            <div className="text-[18px] font-extrabold">24/7</div>
-            <div className="text-[10px] text-[#8a8a93] mt-[3px]">поддержка</div>
-          </div>
+        {/* Новое — collapsible */}
+        <div onClick={() => setNewOpen(o => !o)} className="flex items-center justify-between mb-3 cursor-pointer">
+          <span className="flex items-center gap-1.5 text-[11px] font-bold tracking-[1.5px] uppercase text-[#9a9aa2] font-mono">
+            <motion.span animate={{ rotate: newOpen ? 0 : -90 }} transition={{ duration: 0.2 }} className="flex">
+              <CaretDown size={12} weight="bold" />
+            </motion.span>
+            // Новое
+          </span>
+          <button onClick={e => { e.stopPropagation(); onTabCats() }} className="text-white text-[12px] font-bold active:opacity-70 transition-opacity">
+            Смотреть все ›
+          </button>
         </div>
 
-        {/* Новое */}
-        {recent.length > 0 && (
-          <>
-            <div className="flex items-center justify-between mb-3.5">
-              <span className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#9a9aa2]">Новое</span>
-              <button onClick={onTabCats} className="text-green text-[12px] font-bold active:opacity-70 transition-opacity">Все ›</button>
+        {newOpen && (
+          <div className="rounded-2xl mb-7 overflow-hidden" style={{ border: '1px solid rgba(255,255,255,.08)', background: '#101014' }}>
+            <div className="px-[18px] py-4" style={{ borderBottom: '1px solid rgba(255,255,255,.07)' }}>
+              <div className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1.5" style={{ color: '#7a7a83' }}>Всего материалов</div>
+              <div className="text-[32px] font-extrabold text-white">{totalCount}</div>
             </div>
-            <div className="flex flex-col gap-2.5 mb-7">
-              {recent.map((m, i) => (
-                <motion.div
-                  key={m.id}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.04 }}
-                  onClick={() => onMaterial(m.id, m.section_id)}
-                  className="flex items-center gap-3 p-3 rounded-[14px] cursor-pointer active:border-green/40 transition-transform duration-150 active:translate-x-0.5"
-                  style={{ border: '1px solid rgba(255,255,255,.08)', background: '#101014' }}
-                >
-                  <div
-                    className="shrink-0 w-[42px] h-[42px] rounded-xl flex items-center justify-center"
-                    style={{ background: 'radial-gradient(circle,rgba(34,197,94,.28),rgba(34,197,94,.06) 65%,transparent)', boxShadow: '0 0 14px rgba(34,197,94,.3)' }}
-                  >
-                    <span className="text-lg">{m.section_emoji || '📁'}</span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-[11px] text-[#8a8a93] mb-0.5 truncate">{m.section_title}</div>
-                    <div className="text-[14px] font-semibold truncate">{m.title}</div>
-                  </div>
-                  {m.locked && <Crown size={14} weight="fill" className="shrink-0 text-violet opacity-80" />}
-                </motion.div>
-              ))}
-            </div>
-          </>
+            {recent.length > 0 && (
+              <>
+                <div className="px-[18px] pt-3.5 pb-1.5 text-[10px] font-bold tracking-[1.2px] uppercase" style={{ color: '#7a7a83' }}>Последние добавленные</div>
+                <div className="flex flex-col">
+                  {recent.map(m => (
+                    <div
+                      key={m.id}
+                      onClick={() => onMaterial(m.id, m.section_id)}
+                      className="flex items-center gap-3 px-[18px] py-3 cursor-pointer transition-colors duration-150 active:bg-white/[.04]"
+                    >
+                      <div
+                        className="shrink-0 w-9 h-9 rounded-[10px] flex items-center justify-center"
+                        style={{ background: 'radial-gradient(circle,rgba(34,197,94,.28),rgba(34,197,94,.06) 65%,transparent)', boxShadow: '0 0 12px rgba(34,197,94,.3)' }}
+                      >
+                        <span className="text-base">{m.section_emoji || '📁'}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[11px] text-[#8a8a93] mb-0.5 truncate">{m.section_title}</div>
+                        <div className="text-[14px] font-semibold truncate">{m.title}</div>
+                      </div>
+                      {m.locked && <Crown size={14} weight="fill" className="shrink-0 text-violet opacity-80" />}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         )}
 
         {/* Featured — авторский раздел S010lvloon */}
@@ -199,7 +231,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.04 }}
               onClick={() => onSection(s)}
-              className="relative rounded-2xl p-3 flex flex-col items-center gap-1.5 cursor-pointer overflow-hidden transition-colors active:border-green/50"
+              className="relative rounded-2xl p-3 flex flex-col items-center gap-1.5 cursor-pointer overflow-hidden transition-transform duration-150 active:-translate-y-0.5 active:border-green/50"
               style={{ border: '1px solid rgba(255,255,255,.09)', background: 'radial-gradient(120% 100% at 50% 0%, rgba(255,255,255,.05), transparent 60%), #101014' }}
             >
               <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent)' }} />
