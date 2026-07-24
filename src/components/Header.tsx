@@ -46,6 +46,7 @@ export default function Header({ title, showBack, onBack, onSearch, onBell, book
         <button
           className="w-8 h-8 rounded-full bg-white/[.06] flex items-center justify-center active:bg-white/[.14] transition-colors shrink-0"
           onClick={onSearch}
+          aria-label="Поиск"
         >
           <MagnifyingGlass size={16} weight="bold" />
         </button>
@@ -54,6 +55,7 @@ export default function Header({ title, showBack, onBack, onSearch, onBell, book
         <button
           className="w-8 h-8 rounded-full bg-white/[.06] flex items-center justify-center active:bg-white/[.14] transition-colors shrink-0"
           onClick={onBell}
+          aria-label="Уведомления"
         >
           <Bell size={16} weight="bold" />
         </button>

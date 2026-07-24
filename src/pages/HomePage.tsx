@@ -57,6 +57,8 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
     </div>
   )
 
+  const featured = sections.find(s => s.title === 'Знания S010lvloon')
+
   return (
     <div className="flex-1 overflow-y-auto pb-14">
       <div className="px-4 pt-3">
@@ -160,9 +162,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
         )}
 
         {/* Featured — авторский раздел S010lvloon */}
-        {sections.find(s => s.title === 'Знания S010lvloon') && (() => {
-          const featured = sections.find(s => s.title === 'Знания S010lvloon')!
-          return (
+        {featured && (
             <div
               onClick={() => onSection(featured)}
               className="relative mb-5 cursor-pointer overflow-hidden rounded-md active:opacity-80 transition-opacity"
@@ -187,8 +187,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
                 <span className="font-bold text-[20px] shrink-0" style={{ color: '#FFBC2E' }}>›</span>
               </div>
             </div>
-          )
-        })()}
+        )}
 
         {/* Categories */}
         <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#9a9aa2] mb-3.5">Разделы</div>
