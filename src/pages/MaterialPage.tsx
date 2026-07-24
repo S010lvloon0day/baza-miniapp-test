@@ -156,7 +156,7 @@ export default function MaterialPage({ materialId, sectionId, botUsername, onUpg
       className={`w-full flex items-center justify-center gap-2 text-[12px] font-semibold tracking-[2px] uppercase rounded-xl active:opacity-70 disabled:opacity-50 transition-colors ${
         prominent
           ? 'h-12 bg-gradient-to-r from-[#2D7BF0] to-[#54A0FF] text-white'
-          : 'h-10 border border-white/[.08] text-gray active:border-green/40'
+          : 'h-10 border border-[rgba(255,255,255,.14)] bg-gradient-to-b from-white/[.06] to-white/[.02] text-gray shadow-[0_4px_14px_rgba(0,0,0,.25)] active:border-green/40'
       }`}
     >
       <PaperPlaneTilt size={prominent ? 18 : 16} />
@@ -259,7 +259,7 @@ export default function MaterialPage({ materialId, sectionId, botUsername, onUpg
                       />
                       <TgButton />
                       <button onClick={openExternal}
-                        className="w-full h-9 border border-white/[.08] active:border-green/40 flex items-center justify-center gap-2 text-gray text-[11px] tracking-[2px] uppercase rounded-xl transition-colors active:opacity-70">
+                        className="w-full h-9 border border-[rgba(255,255,255,.14)] bg-gradient-to-b from-white/[.06] to-white/[.02] shadow-[0_4px_14px_rgba(0,0,0,.25)] active:border-green/40 flex items-center justify-center gap-2 text-gray text-[11px] tracking-[2px] uppercase rounded-xl transition-colors active:opacity-70">
                         <ArrowSquareOut size={15} />
                         Открыть в браузере
                       </button>
@@ -372,7 +372,7 @@ export default function MaterialPage({ materialId, sectionId, botUsername, onUpg
           ) : (
             <span
               onClick={() => { setIdxInput(String(idx >= 0 ? idx + 1 : 1)); setEditingIdx(true) }}
-              className="text-[13px] tracking-widest cursor-pointer border-b border-dashed border-gray2/40 active:opacity-70 transition-opacity"
+              className="text-[13px] tracking-widest cursor-pointer px-2.5 py-1.5 rounded-lg border border-[rgba(255,255,255,.14)] bg-gradient-to-b from-white/[.06] to-white/[.02] active:border-green/40 transition-colors"
             >
               <span className="font-semibold text-white">{idx >= 0 ? idx + 1 : '—'}</span>
               <span className="text-gray"> / {sectionMats.length}</span>

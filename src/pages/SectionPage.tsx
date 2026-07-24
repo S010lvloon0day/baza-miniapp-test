@@ -374,7 +374,7 @@ export default function SectionPage({ section, initialPage = 0, onMaterial, onSu
               ) : (
                 <span
                   onClick={() => { setPageInput(String(page + 1)); setEditingPage(true) }}
-                  className="text-[13px] text-gray tracking-wider min-w-[48px] text-center cursor-pointer border-b border-dashed border-gray2/40 active:text-white transition-colors"
+                  className="text-[13px] text-gray tracking-wider min-w-[48px] text-center cursor-pointer px-2.5 py-1.5 rounded-lg border border-[rgba(255,255,255,.14)] bg-gradient-to-b from-white/[.06] to-white/[.02] active:border-green/40 active:text-white transition-colors"
                 >
                   {page + 1} / {totalPages}
                 </span>
