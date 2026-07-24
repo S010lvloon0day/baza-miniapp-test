@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Crown, CaretDown } from '@phosphor-icons/react'
 import { api } from '../api/client'
+import MediaTypeIcon from '../components/MediaTypeIcon'
 import type { Section, Material, Banner } from '../api/client'
 import BannerCard from '../components/BannerCard'
 import CategoryIcon from '../components/CategoryIcon'
@@ -174,12 +175,7 @@ export default function HomePage({ onSection, onMaterial, onTabCats, botUsername
                       onClick={() => onMaterial(m.id, m.section_id)}
                       className="flex items-center gap-3 px-[18px] py-3 cursor-pointer transition-colors duration-150 active:bg-white/[.04]"
                     >
-                      <div
-                        className="shrink-0 w-9 h-9 rounded-[10px] flex items-center justify-center"
-                        style={{ background: 'radial-gradient(circle,rgba(34,197,94,.28),rgba(34,197,94,.06) 65%,transparent)', boxShadow: '0 0 12px rgba(34,197,94,.3)' }}
-                      >
-                        <span className="text-base">{m.section_emoji || '📁'}</span>
-                      </div>
+                      <MediaTypeIcon type={m.media_type} size={36} radius={10} iconSize={16} />
                       <div className="flex-1 min-w-0">
                         <div className="text-[11px] text-[#8a8a93] mb-0.5 truncate">{m.section_title}</div>
                         <div className="text-[14px] font-semibold truncate">{m.title}</div>
