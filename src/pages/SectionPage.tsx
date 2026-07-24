@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Image, Video, File, Article, Star, Lock, Check } from '@phosphor-icons/react'
+import { Star, Lock, Check } from '@phosphor-icons/react'
 import { ICON_PATHS, resolveIcon } from '../components/CategoryIcon'
+import MediaTypeIcon from '../components/MediaTypeIcon'
 import { api } from '../api/client'
 import type { Section, Material } from '../api/client'
 
@@ -29,13 +30,6 @@ interface Props {
 }
 
 const typeLabel = (t: string) => ({ photo:'ФОТО', video:'ВИДЕО', document:'ДОКУМЕНТ', text:'ТЕКСТ' }[t] ?? t.toUpperCase())
-const TypeIcon = ({ t }: { t: string }) => {
-  const props = { size: 22, weight: 'duotone' as const, className: 'text-green' }
-  if (t === 'photo')  return <Image   {...props} />
-  if (t === 'video')  return <Video   {...props} />
-  if (t === 'text')   return <Article {...props} />
-  return <File {...props} />
-}
 
 const BENEFITS = [
   'Полный доступ ко всем закрытым курсам',
@@ -311,11 +305,9 @@ export default function SectionPage({ section, initialPage = 0, onMaterial, onSu
           <div className="w-2 h-2 bg-green rounded-full animate-pulse" />
         </div>
       ) : mats.length > 0 ? (
-        <section>
-          <div className="flex items-center justify-between px-4 pt-4 pb-2.5">
-            <span className="text-[11px] font-mono text-gray2">[{total}] файлов</span>
-          </div>
-          <div className="mx-4 flex flex-col divide-y divide-bd">
+        <section className="px-4">
+          <div className="pt-4 pb-3.5 font-mono text-[11px] tracking-[1.5px]" style={{ color: '#8a8a93' }}>// {total} файлов</div>
+          <div className="flex flex-col" style={{ gap: 9 }}>
             {mats.map((m, i) => (
               <motion.div
                 key={m.id}
@@ -323,25 +315,27 @@ export default function SectionPage({ section, initialPage = 0, onMaterial, onSu
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.04 }}
                 onClick={() => onMaterial(m.id, section.id, page)}
-                className={`flex items-center gap-3 py-3 cursor-pointer -mx-4 px-4 transition-colors border-l-2
-                  ${m.locked ? 'active:bg-[rgba(157,92,255,.04)] border-[rgba(157,92,255,.25)]' : 'active:bg-white/[.03]'}`}
-                style={m.locked ? {} : { borderLeftColor: { photo:'#60A5FA', video:'#F87171', document:'#FBBF24', text:'rgba(255,255,255,.3)' }[m.media_type] ?? 'rgba(255,255,255,.2)' }}
+                className={`flex items-center gap-3 cursor-pointer border transition-transform duration-150 active:translate-x-0.5
+                  ${m.locked ? 'border-[rgba(157,92,255,.2)] active:border-violet/40' : 'border-white/[.08] active:border-green/40'}`}
+                style={{ padding: 12, borderRadius: 14, background: m.locked ? 'rgba(157,92,255,.04)' : '#101014' }}
               >
+                <MediaTypeIcon type={m.media_type} size={38} radius={11} iconSize={16} glow="0 0 12px rgba(34,197,94,.3)" />
                 <div className="flex-1 min-w-0">
-                  <div className={`text-[13px] font-semibold leading-snug line-clamp-2 mb-1
-                    ${m.locked ? 'text-white/35' : 'text-white'}`}>
+                  <div className={`text-[14px] font-semibold truncate ${m.locked ? 'text-white/35' : ''}`}>
                     {m.title}
                   </div>
                   {m.locked ? (
-                    <div className="inline-flex items-center gap-1 px-2 py-0.5 border border-[rgba(157,92,255,.3)]" style={{ background: 'rgba(157,92,255,.08)' }}>
+                    <div className="inline-flex items-center gap-1 mt-1 px-2 py-0.5 border border-[rgba(157,92,255,.3)]" style={{ background: 'rgba(157,92,255,.08)' }}>
                       <Star size={9} weight="fill" className="text-violet" />
                       <span className="text-[9px] font-mono tracking-[1px] text-violet uppercase">premium</span>
                     </div>
                   ) : (
-                    <span className="text-[10px] font-mono text-gray2 tracking-[1px]">{typeLabel(m.media_type)}</span>
+                    <div className="text-[10px] mt-0.5" style={{ color: '#6a6a75', letterSpacing: '.5px' }}>{typeLabel(m.media_type)}</div>
                   )}
                 </div>
-                <TypeIcon t={m.media_type} />
+                {!m.locked && (
+                  <span className="shrink-0" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4AE885', boxShadow: '0 0 6px #4AE885' }} />
+                )}
               </motion.div>
             ))}
           </div>
