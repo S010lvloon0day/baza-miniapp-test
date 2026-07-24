@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import Shield from '../components/Shield'
+import BazaMark from '../components/BazaMark'
 
 export default function SplashPage({ onStart }: { onStart: () => void }) {
   return (
@@ -19,7 +19,12 @@ export default function SplashPage({ onStart }: { onStart: () => void }) {
         transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
         className="relative mb-8"
       >
-        <Shield size={104} glow />
+        <div
+          className="w-[104px] h-[104px] rounded-full flex items-center justify-center"
+          style={{ background: 'radial-gradient(circle, rgba(34,197,94,.22), rgba(34,197,94,.03) 65%, transparent)', boxShadow: '0 0 40px rgba(34,197,94,.35)' }}
+        >
+          <BazaMark size={52} color="#4AE885" glow />
+        </div>
       </motion.div>
 
       <motion.h1
